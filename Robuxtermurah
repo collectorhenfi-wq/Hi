@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hendar Store | Jual Robux Murah</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+body {font-family:'Poppins',sans-serif;margin:0;padding:0;background:linear-gradient(135deg,#0d0d0d,#000);color:white;text-align:center;overflow-x:hidden;}
+header {background:#000;padding:20px 0;box-shadow:0 2px 20px rgba(0,255,153,0.4);position:relative;overflow:hidden;}
+.logo {display:flex;justify-content:center;align-items:center;gap:10px;}
+.logo img {width:40px;height:40px;border-radius:50%;box-shadow:0 0 10px rgba(0,255,153,0.4);animation:pulse 2s infinite alternate;}
+.logo h1 {font-size:2em;font-weight:800;margin:0;letter-spacing:1px;color:#00ff99;text-shadow:0 0 5px #00ff99,0 0 10px #00ff99,0 0 20px #00ff99,0 0 30px #00ff99;animation:neonGlow 1.5s ease-in-out infinite alternate;}
+@keyframes neonGlow {0% {text-shadow:0 0 5px #00ff99,0 0 10px #00ff99,0 0 20px #00ff99,0 0 30px #00ff99;}50% {text-shadow:0 0 15px #00ff99,0 0 25px #00ff99,0 0 35px #00ff99,0 0 50px #00ff99;}100% {text-shadow:0 0 5px #00ff99,0 0 10px #00ff99,0 0 20px #00ff99,0 0 30px #00ff99;}}
+@keyframes pulse {0% {transform:scale(1);}50% {transform:scale(1.1);}100% {transform:scale(1);}}
+.container {max-width:450px;margin:50px auto;background:rgba(26,26,26,0.8);border-radius:20px;padding:30px;box-shadow:0 0 30px rgba(0,255,153,0.3);backdrop-filter:blur(5px);transition:all 0.3s;}
+.container:hover {box-shadow:0 0 50px rgba(0,255,153,0.5);}
+h2 {color:#00ff99;font-weight:600;margin-bottom:5px;}
+p {color:#aaa;font-size:0.95em;}
+input {width:100%;padding:12px;margin:10px 0;border-radius:12px;border:none;text-align:center;font-size:1em;background:rgba(17,17,17,0.8);color:#fff;outline:1px solid #00ff99;transition:0.3s all;}
+input:focus {outline:2px solid #00ff99;background:rgba(20,20,20,0.9);box-shadow:0 0 10px #00ff99;}
+button {width:100%;background:linear-gradient(90deg,#00ff99,#00cc7a);border:none;color:black;padding:13px;font-weight:600;border-radius:12px;cursor:pointer;font-size:1em;transition:0.3s all;margin-top:10px;box-shadow:0 0 10px rgba(0,255,153,0.2);}
+button:hover {transform:scale(1.05);box-shadow:0 0 25px rgba(0,255,153,0.6);background:linear-gradient(90deg,#00ffcc,#00b36b);}
+.harga-list,.jumlah-beli,.konfirmasi {display:none;margin-top:15px;animation:fadeIn 0.5s ease;}
+.harga-btn {background:#111;color:#00ff99;border:1px solid #00ff99;margin-top:10px;transition:0.3s all;}
+.harga-btn:hover {background:#00ff99;color:#000;transform:scale(1.05);box-shadow:0 0 20px #00ff99;}
+.warning {color:#00ff99;font-size:0.85em;margin:5px 0 10px 0;text-shadow:0 0 3px #00ff99;}
+.konfirmasi h3 {color:#00ff99;}
+footer {margin-top:50px;color:#555;font-size:0.85em;padding-bottom:20px;text-shadow:0 0 5px #00ff99;}
+@keyframes fadeIn {from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">
+<img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="Logo Robux">
+<h1>Hendar Store 💎</h1>
+</div>
+</header>
+
+<div class="container">
+<h2>Pembelian Robux</h2>
+<p>Masukkan username Roblox kamu:</p>
+<input type="text" id="username" placeholder="Username Roblox kamu...">
+<button onclick="lanjut()">Lanjut Pilih Paket</button>
+
+<div class="harga-list" id="hargaList">
+<h3>Pilih Paket Robux:</h3>
+
+<button class="harga-btn" onclick="tampilkanJumlah('1 Robux', 200)">1 Robux = 200P</button>
+<p class="warning"> Harga naik? Stock lagi menipis, sorry</p>
+
+<button class="harga-btn" onclick="tampilkanJumlah('100 Robux', 16000)">100 Robux = Rp16.000</button>
+<p class="warning"> Harga naik? Stock lagi menipis, sorry</p>
+
+<button class="harga-btn" onclick="tampilkanJumlah('500 Robux', 73000)">500 Robux = Rp73.000</button>
+<p class="warning"> Harga naik? Stock lagi menipis, sorry</p>
+
+<button class="harga-btn" onclick="tampilkanJumlah('1000 Robux', 143000)">1000 Robux = Rp143.000</button>
+<p class="warning"> Harga naik? Stock lagi menipis, sorry</p>
+
+</div>
+
+<div class="jumlah-beli" id="jumlahBeli">
+<p>Masukkan jumlah unit yang ingin dibeli:</p>
+<input type="number" id="jumlahInput" min="1" value="1">
+<button onclick="hitungHarga()">Confirm</button>
+</div>
+
+<div class="konfirmasi" id="konfirmasi">
+<h3>💰 Detail Pembelian</h3>
+<p id="infoUser"></p>
+<p id="infoPaket"></p>
+<p>Total Harga: <b id="totalHarga"></b></p>
+<p>Kirim pembayaran ke DANA:</p>
+<h2 style="color:#00ff99;">083155374772</h2>
+<p>Setelah bayar, pilih konfirmasi lewat:</p>
+<button onclick="window.open('https://t.me/+eaq1XaOulRtkOGNl','_blank')">💬 Telegram</button>
+<button onclick="window.open('https://discord.gg/TkbhZSCx7A','_blank')">🎮 Discord</button>
+</div>
+</div>
+
+<footer>© 2025 Hendar Store — Fast & Trusted</footer>
+
+<script>
+let selectedPaket=''; let hargaSatuan=0;
+
+function lanjut(){
+  const user=document.getElementById('username').value.trim();
+  if(!user){alert("Masukkan username Roblox kamu dulu!"); return;}
+  document.getElementById('hargaList').style.display='block';
+  document.getElementById('jumlahBeli').style.display='none';
+  document.getElementById('konfirmasi').style.display='none';
+  window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+}
+
+function tampilkanJumlah(paket,harga){
+  selectedPaket=paket; hargaSatuan=harga;
+  document.getElementById('jumlahBeli').style.display='block';
+  document.getElementById('konfirmasi').style.display='none';
+  document.getElementById('jumlahInput').value=1;
+  window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+}
+
+function hitungHarga(){
+  const user=document.getElementById('username').value.trim();
+  const jumlah=parseInt(document.getElementById('jumlahInput').value);
+  if(!jumlah||jumlah<1){alert("Masukkan jumlah yang valid!"); return;}
+  const total=hargaSatuan*jumlah;
+  document.getElementById('infoUser').innerHTML="👤 Username Roblox: <b>"+user+"</b>";
+  document.getElementById('infoPaket').innerHTML="📦 Paket Dipilih: <b>"+selectedPaket+"</b> — Jumlah: <b>"+jumlah+"</b>";
+  document.getElementById('totalHarga').innerHTML="Rp"+total.toLocaleString('id-ID');
+  document.getElementById('konfirmasi').style.display='block';
+  window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>
